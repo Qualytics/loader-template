@@ -12,7 +12,7 @@ $ pip install cookiecutter
 
 The next command will ask for some input.  Enter the name of your tap:
 ```bash
-$ cookiecutter https://github.com/Qualytics/loader-cookiecutter.git
+$ cookiecutter https://github.com/Qualytics/loader-template.git
 project_name [e.g. 'loader-json']: loader-foobar
 ```
 
