@@ -1,0 +1,4 @@
+{
+   "project_name": "e.g. 'loader-json",
+   "package_name": "{{cookiecutter.project_name.replace('-','_')}}"
+}
