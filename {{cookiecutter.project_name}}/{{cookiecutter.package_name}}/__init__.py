@@ -94,7 +94,7 @@ def persist_lines(config, lines):
 
 def send_usage_stats():
     try:
-        version = pkg_resources.get_distribution('target-csv').version
+        version = pkg_resources.get_distribution('{{cookiecutter.project_name}}').version
         conn = http.client.HTTPConnection('collector.singer.io', timeout=10)
         conn.connect()
         params = {
