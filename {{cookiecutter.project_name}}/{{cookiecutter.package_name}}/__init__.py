@@ -6,12 +6,8 @@ import os
 import sys
 import json
 import threading
-import http.client
-import urllib
 from datetime import datetime
 import collections
-
-import pkg_resources
 from jsonschema.validators import Draft4Validator
 import singer
 
@@ -91,26 +87,6 @@ def persist_lines(config, lines):
 
     return state
 
-
-def send_usage_stats():
-    try:
-        version = pkg_resources.get_distribution('target-csv').version
-        conn = http.client.HTTPConnection('collector.singer.io', timeout=10)
-        conn.connect()
-        params = {
-            'e': 'se',
-            'aid': 'singer',
-            'se_ca': '{{cookiecutter.project_name}}',
-            'se_ac': 'open',
-            'se_la': version,
-        }
-        conn.request('GET', '/i?' + urllib.parse.urlencode(params))
-        response = conn.getresponse()
-        conn.close()
-    except:
-        logger.debug('Collection request failed')
-
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--config', help='Config file')
@@ -121,12 +97,6 @@ def main():
             config = json.load(input)
     else:
         config = {}
-
-    if not config.get('disable_collection', False):
-        logger.info('Sending version information to singer.io. ' +
-                    'To disable sending anonymous usage data, set ' +
-                    'the config parameter "disable_collection" to true')
-        threading.Thread(target=send_usage_stats).start()
 
     input = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
     state = persist_lines(config, input)
