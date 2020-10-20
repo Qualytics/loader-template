@@ -2,10 +2,10 @@
 from setuptools import setup
 
 setup(
-    name="{{cookiecutter.project_name}}",
+    name="{{cookiecutter.loader_name}}",
     version="0.1.0",
     description="Meltano loader for extracting data",
-    author="{{author_name}}",
+    author="{{cookiecutter.author_name}}",
     url="",
     classifiers=["Programming Language :: Python :: 3 :: Only"],
     py_modules=["{{cookiecutter.package_name}}"],

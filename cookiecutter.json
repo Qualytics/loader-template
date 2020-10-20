@@ -1,5 +1,5 @@
 {
-   "project_name": "e.g. 'loader-json",
-   "package_name": "{{cookiecutter.project_name.replace('-','_')}}",
+   "loader_name": "e.g. 'loader-json",
+   "package_name": "{{cookiecutter.loader_name.replace('-','_')}}",
    "author_name": "Qualytics,Inc."
 }
